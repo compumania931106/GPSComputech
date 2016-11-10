@@ -20,10 +20,6 @@ public class CategoryDAO extends Category{
     
     public boolean newCategory(){
         String sql = "INSERT INTO public.category(categoryname)VALUES ('"+ getCategoryname() +"');";
-        if(con.Create(sql) == null){
-            return true;
-        }else{
-            return false;
-        }
+        return con.Create(sql) == null;
     }
 }
