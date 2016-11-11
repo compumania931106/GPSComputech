@@ -57,6 +57,19 @@ public class ConexionDB {
         }
         return rs;
     }
+    
+    public int Update(String sql){
+        int resultado = 0;
+        try{
+            st = getCon().createStatement();
+            resultado = st.executeUpdate(sql);
+        }catch(Exception e){
+            System.out.println("Error en la actualizacion");
+        }
+        return resultado;
+    }
+    
+    
 
     public Connection getCon() {
         return con;

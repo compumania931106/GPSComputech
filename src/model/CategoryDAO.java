@@ -6,6 +6,7 @@
 package model;
 
 import controller.ConexionDB;
+import java.sql.ResultSet;
 
 /**
  *
@@ -20,6 +21,36 @@ public class CategoryDAO extends Category{
     
     public boolean newCategory(){
         String sql = "INSERT INTO public.category(categoryname)VALUES ('"+ getCategoryname() +"');";
-        return con.Create(sql) == null;
+        if(con.Create(sql) == null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean updateCategory(){
+        String sql = "UPDATE public.category SET categoryname = '"+ getCategoryname() +"';";
+        if(con.Update(sql) == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    
+    
+    public ResultSet getCategorys(){
+        String sql = "SELECT * FROM public.category;";
+        return con.Read(sql);
+    }
+    
+    public ResultSet getCategoryByID(){
+        String sql = "SELECT * FROM public.category WHERE categoryid = " + getCategoryid() + ";";
+        return con.Read(sql);
+    }
+    
+    public ResultSet getCategoryByName(){
+        String sql = "SELECT * FROM public.category WHERE categoryname LIKE '"+ getCategoryname() +"%'";
+        return con.Read(sql);
     }
 }
