@@ -69,6 +69,17 @@ public class ConexionDB {
         return resultado;
     }
     
+    public int Delete(String sql){
+        int resultado = 0;
+        try{
+            st = getCon().createStatement();
+            resultado = st.executeUpdate(sql);
+        }catch(Exception e){
+            System.out.println("Error en la eliminacion" + e.toString());
+        }
+        return resultado;
+    }
+    
     
 
     public Connection getCon() {

@@ -29,8 +29,17 @@ public class CategoryDAO extends Category{
     }
     
     public boolean updateCategory(){
-        String sql = "UPDATE public.category SET categoryname = '"+ getCategoryname() +"';";
+        String sql = "UPDATE public.category SET categoryname = '"+ getCategoryname() +"' WHERE categoryid = "+ getCategoryid() +";";
         if(con.Update(sql) == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean deleteCategory(){
+        String sql = "DELETE FROM public.category WHERE categoryid = " + getCategoryid() + ";";
+        if(con.Delete(sql) == 1){
             return true;
         }else{
             return false;
