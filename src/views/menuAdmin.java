@@ -28,6 +28,8 @@ public class menuAdmin extends javax.swing.JFrame {
         
         if(screenSize.width == 1366 && screenSize.height == 768){
             jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/fmenuadminwxga.png")));
+        }else{
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/fmenuadminfullhd.png")));
         }
         
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -54,8 +56,6 @@ public class menuAdmin extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Usuario");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1710, 90, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/fmenuadminfullhd.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
