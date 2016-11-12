@@ -6,7 +6,9 @@
 package views;
 
 import java.awt.Color;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import model.UsersDAO;
 
 /**
  *
@@ -53,6 +55,11 @@ public class login extends javax.swing.JFrame {
         jButton1.setIconTextGap(-3);
         jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ingresarclick.png"))); // NOI18N
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ingresarfocus.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 150, 70));
 
         jTextField1.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
@@ -72,6 +79,22 @@ public class login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        UsersDAO us = new UsersDAO();
+        us.setUsername(jTextField1.getText());
+        us.setPassword(String.valueOf(jPasswordField1.getPassword()));
+        
+        ResultSet rs = us.getLogin();
+        
+        try{
+            while(rs.next()){
+                System.out.println("Tiene acceso");
+            }
+        }catch(Exception e){
+            System.out.println("No tiene acceso");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

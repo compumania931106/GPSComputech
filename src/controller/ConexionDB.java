@@ -53,6 +53,7 @@ public class ConexionDB {
             st = getCon().createStatement();
             this.rs = st.executeQuery(sql);
         }catch(SQLException e){
+            System.out.println("Entro al catch de Read: " + e.toString());
             return null;
         }
         return rs;
