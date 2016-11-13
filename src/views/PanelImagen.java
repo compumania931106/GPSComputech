@@ -22,7 +22,7 @@ public class PanelImagen extends javax.swing.JPanel {
     @Override
     public void paintComponent(Graphics g) {
         Dimension tamanio = getSize();
-        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/image/fmenuadminfullhd.png"));
+        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/image/fondo.png"));
         g.drawImage(imagenFondo.getImage(), 0, 0, tamanio.width, tamanio.height, null);
         setOpaque(false);
         super.paintComponent(g);

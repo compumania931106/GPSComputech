@@ -84,12 +84,21 @@ public class login extends javax.swing.JFrame {
         UsersDAO us = new UsersDAO();
         us.setUsername(jTextField1.getText());
         us.setPassword(String.valueOf(jPasswordField1.getPassword()));
+        int rol = 0;
         
         ResultSet rs = us.getLogin();
         
         try{
             while(rs.next()){
                 System.out.println("Tiene acceso");
+                if(rs.getInt("roleid") == 1){
+                    mAdmin a = new mAdmin();
+                    a.jLabel2.setText(rs.getString("username"));
+                    a.setVisible(true);
+                    this.dispose();
+                }
+                
+                
             }
         }catch(Exception e){
             System.out.println("No tiene acceso");
