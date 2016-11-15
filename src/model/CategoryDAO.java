@@ -62,4 +62,6 @@ public class CategoryDAO extends Category{
         String sql = "SELECT * FROM public.category WHERE categoryname LIKE '"+ getCategoryname() +"%'";
         return con.Read(sql);
     }
+    
+    
 }
