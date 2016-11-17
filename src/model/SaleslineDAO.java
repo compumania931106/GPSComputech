@@ -19,7 +19,7 @@ public class SaleslineDAO extends Salesline {
         this.con = new ConexionDB();
     }
     public boolean newSalesline(){
-        String sql = "INSERT INTO public.salesline(quantity,saleprice,purchprice,saleid)VALUES ('"+ getQuantity() +"','"+ getSaleprice() +"','"+ getPurchprice() +"','"+ getSaleid() +"',);";
+        String sql = "INSERT INTO public.salesline(quantity,saleprice,purchprice,saleid,productid)VALUES ('"+ getQuantity() +"','"+ getSaleprice() +"','"+ getPurchprice() +"','"+ getSaleid() +"','"+ getProductid() +"');";
         if(con.Create(sql) == null){
             return true;
         }else{
@@ -27,7 +27,7 @@ public class SaleslineDAO extends Salesline {
         }
     }
     public boolean updateSalesline(){
-        String sql = "UPDATE public.salesline SET  quantity = '"+ getQuantity() +"',saleprice = '"+ getSaleprice() +"', purchprice = '"+ getPurchprice() +"', saleid = '"+ getSaleid() +"'  WHERE saleslineid = "+ getSaleslineid() +";";
+        String sql = "UPDATE public.salesline SET  quantity = '"+ getQuantity() +"',saleprice = '"+ getSaleprice() +"', purchprice = '"+ getPurchprice() +"', saleid = '"+ getSaleid() +"', productid = '"+ getProductid() +"'  WHERE saleslineid = "+ getSaleslineid() +";";
         if(con.Update(sql) == 1){
             return true;
         }else{

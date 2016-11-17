@@ -21,8 +21,8 @@ public class ProductDAO extends Product {
     
     
     public boolean newProduct(){
-        String sql = "INSERT INTO public.product(code,productname,brand,purchprice,stock,salepricemin,reorderpoint,salepricemay)VALUES ('"+ getCode() +"','"+ getProductname() +"','"+ getBrand() +"',"
-                + "'"+ getPurchprice() +"','"+ getStock() +"','"+ getSalepricemin() +"','"+ getReorderpoint() +"','"+ getSalepricemay() +"');";
+        String sql = "INSERT INTO public.product(code,productname,brand,purchprice,stock,salepricemin,reorderpoint,categoryid,salepricemay)VALUES ('"+ getCode() +"','"+ getProductname() +"','"+ getBrand() +"',"
+                + "'"+ getPurchprice() +"','"+ getStock() +"','"+ getSalepricemin() +"','"+ getReorderpoint() +"','"+ getCategoryid() +"','"+ getSalepricemay() +"');";
         if(con.Create(sql) == null){
             return true;
         }else{
@@ -31,7 +31,7 @@ public class ProductDAO extends Product {
     }
     public boolean updateProduct(){
         String sql = "UPDATE public.product SET code = '"+ getCode() +"',productname = '"+ getProductname() +"',brand = '"+ getBrand() +"', purchprice = '"+ getPurchprice() +"', stock = '"+ getStock() +"',salepricemin = '"+ getSalepricemin() +"',"
-                + "reorderpoint = '"+ getReorderpoint() +"',salepricemay = '"+ getSalepricemay() +"' WHERE productid = "+ getProductid() +";";
+                + "reorderpoint = '"+ getReorderpoint() +"', categoryid = '"+ getCategoryid() +"', salepricemay = '"+ getSalepricemay() +"' WHERE productid = "+ getProductid() +";";
         if(con.Update(sql) == 1){
             return true;
         }else{

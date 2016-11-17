@@ -20,9 +20,9 @@ public class UsersDAO extends Users{
     }
     
     public boolean newUsers(){
-        String sql = "INSERT INTO public.users(username,password,phone,neigborhood,zipcode,city,state,street,email,streetnumber,cellphone,gender)VALUES ('"+ getUsername() +"','"+ getPassword() +"','"+ getPhone() +"',"
+        String sql = "INSERT INTO public.users(username,password,phone,neigborhood,zipcode,city,state,street,email,streetnumber,cellphone,companyid,roleid,gender)VALUES ('"+ getUsername() +"','"+ getPassword() +"','"+ getPhone() +"',"
                 + "'"+ getNeigborhood() +"','"+ getZipcode() +"','"+ getCity() +"','"+ getState() +"','"+ getStreet() +"',"
-                + "'"+ getEmail() +"','"+ getStreetnumber() +"','"+ getCellphone() +"','"+ getGender() +"');";
+                + "'"+ getEmail() +"','"+ getStreetnumber() +"','"+ getCellphone() +"','"+ getCompanyid() +"','"+ getRoleid() +"','"+ getGender() +"');";
         if(con.Create(sql) == null){
             return true;
         }else{
@@ -33,7 +33,7 @@ public class UsersDAO extends Users{
     public boolean updateCategory(){
         String sql = "UPDATE public.users SET username = '"+ getUsername() +"', password = '"+ getPassword() +"', phone = '"+ getPhone() +"', neigborhood = '"+ getNeigborhood() +"',"
                 + " zipcode = '"+ getZipcode() +"', city = '"+ getCity() +"', state = '"+ getState() +"', street = '"+ getStreet() +"', email = '"+ getEmail() +"',"
-                + " streetnumber = '"+ getStreetnumber() +"', cellphone = '"+ getCellphone() +"', gender = '"+ getGender() +"' WHERE userid = "+ getUserid() +";";
+                + " streetnumber = '"+ getStreetnumber() +"', cellphone = '"+ getCellphone() +"', companyid = '"+ getCompanyid() +"', roleid = '"+ getRoleid() +"', gender = '"+ getGender() +"' WHERE userid = "+ getUserid() +";";
         if(con.Update(sql) == 1){
             return true;
         }else{
