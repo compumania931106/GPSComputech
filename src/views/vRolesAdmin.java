@@ -6,6 +6,9 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -16,44 +19,80 @@ import model.RoleDAO;
  * @author victor
  */
 public class vRolesAdmin extends javax.swing.JFrame {
+
+    int roleidEditable;
+    String rolenameEditable;
     JTable tabla;
+
     /**
      * Creates new form vRolesAdmin
      */
     public vRolesAdmin() {
         initComponents();
         jTextField1.setOpaque(false);
-        jTextField1.setBackground(new Color(0,0,0,0));
-        
+        jTextField1.setBackground(new Color(0, 0, 0, 0));
+
         jTextField2.setOpaque(false);
-        jTextField2.setBackground(new Color(0,0,0,0));
-        
+        jTextField2.setBackground(new Color(0, 0, 0, 0));
+
         jScrollPane1.setOpaque(false);
         jScrollPane1.getViewport().setOpaque(false);
         jTable1.setShowGrid(false);
-        
+
         this.llenarTabla();
-        
+
+        jTable1.setDefaultEditor(Object.class, null);
+
+        jTable1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent Mouse_evt) {
+                JTable table = (JTable) Mouse_evt.getSource();
+                Point point = Mouse_evt.getPoint();
+                int row = table.rowAtPoint(point);
+                if (Mouse_evt.getClickCount() == 2) {
+                    roleidEditable = (Integer) tabla.getValueAt(tabla.getSelectedRow(), 0);
+                    rolenameEditable = (String) tabla.getValueAt(tabla.getSelectedRow(), 1);
+                    jTextField1.setText(rolenameEditable);
+                    System.out.println(roleidEditable + ": " + rolenameEditable);
+                }
+            }
+        });
+
     }
-    
-    public void llenarTablaConBusqueda(String texto){
-        
-    }
-    
-    public void llenarTabla(){
+
+    public void llenarTablaConBusqueda(String rolename) {
         RoleDAO r = new RoleDAO();
         DefaultTableModel dfm = new DefaultTableModel();
         tabla = this.jTable1;
         tabla.setModel(dfm);
-        
-        dfm.setColumnIdentifiers(new Object[]{"Codigo","Nombre del Rol"});
-        ResultSet rs = r.getRoles();
-        
-        try{
-            while(rs.next()){
+
+        dfm.setColumnIdentifiers(new Object[]{"Codigo", "Nombre del Rol"});
+        r.setRolename(rolename);
+        ResultSet rs = r.getRoleByName();
+
+        try {
+            while (rs.next()) {
                 dfm.addRow(new Object[]{rs.getInt("roleid"), rs.getString("rolename")});
             }
-        }catch(Exception e){
+        } catch (Exception e) {
+            System.out.println("Error al cargar los datos");
+        }
+    }
+
+    public void llenarTabla() {
+        RoleDAO r = new RoleDAO();
+        DefaultTableModel dfm = new DefaultTableModel();
+        tabla = this.jTable1;
+        tabla.setModel(dfm);
+
+        dfm.setColumnIdentifiers(new Object[]{"Codigo", "Nombre del Rol"});
+        ResultSet rs = r.getRoles();
+
+        try {
+            while (rs.next()) {
+                dfm.addRow(new Object[]{rs.getInt("roleid"), rs.getString("rolename")});
+            }
+        } catch (Exception e) {
             System.out.println("Error al cargar los datos");
         }
     }
@@ -86,6 +125,11 @@ public class vRolesAdmin extends javax.swing.JFrame {
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton4.setIconTextGap(-3);
         jButton4.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eliminarclick.png"))); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/editarnormal.png"))); // NOI18N
@@ -95,11 +139,21 @@ public class vRolesAdmin extends javax.swing.JFrame {
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton3.setIconTextGap(-3);
         jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/editarclick.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
 
         jTextField2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(254, 254, 254));
         jTextField2.setBorder(null);
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 113, 270, -1));
 
         jTable1.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
@@ -143,18 +197,54 @@ public class vRolesAdmin extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         RoleDAO r = new RoleDAO();
         String rolename = jTextField1.getText();
-        if(rolename.equals("")){
+        if (rolename.equals("")) {
             javax.swing.JOptionPane.showMessageDialog(null, "Inserte un nombre de rol");
-        }else{
+        } else {
             r.setRolename(rolename);
-            if(r.newRole()){
+            if (r.newRole()) {
                 this.llenarTabla();
+                jTextField1.setText("");
                 System.out.println("Se inserto correctamente");
-            }else{
+            } else {
                 System.out.println("Problemas en la inserción");
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        this.llenarTablaConBusqueda(jTextField2.getText());
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        RoleDAO r = new RoleDAO();
+        if (jTextField1.getText().equals("")) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Seleecione un registro para editar");
+        } else {
+            r.setRoleid(roleidEditable);
+            r.setRolename(jTextField1.getText());
+
+            if (r.updateRole()) {
+                this.llenarTabla();
+                jTextField1.setText("");
+                System.out.println("Se actualizo correctamente");
+            } else {
+                System.out.println("Problemas en la actualizacion");
+            }
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        RoleDAO r = new RoleDAO();
+        r.setRoleid((Integer) tabla.getValueAt(tabla.getSelectedRow(), 0));
+        if (r.deleteRole()) {
+            this.llenarTabla();
+            System.out.println("Se elimino correctamente");
+        } else {
+            System.out.println("Problemas en la eliminación");
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
