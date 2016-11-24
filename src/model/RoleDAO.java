@@ -48,7 +48,7 @@ public class RoleDAO extends Role {
     }
 
     public ResultSet getRoles() {
-        String sql = "SELECT * FROM public.role;";
+        String sql = "SELECT * FROM public.role ORDER BY roleid ASC;";
         return con.Read(sql);
     }
 
