@@ -6,13 +6,17 @@
 package views;
 
 import java.awt.Color;
+import java.sql.ResultSet;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import model.RoleDAO;
 
 /**
  *
  * @author victor
  */
 public class vRolesAdmin extends javax.swing.JFrame {
-
+    JTable tabla;
     /**
      * Creates new form vRolesAdmin
      */
@@ -21,10 +25,37 @@ public class vRolesAdmin extends javax.swing.JFrame {
         jTextField1.setOpaque(false);
         jTextField1.setBackground(new Color(0,0,0,0));
         
+        jTextField2.setOpaque(false);
+        jTextField2.setBackground(new Color(0,0,0,0));
+        
         jScrollPane1.setOpaque(false);
         jScrollPane1.getViewport().setOpaque(false);
         jTable1.setShowGrid(false);
         
+        this.llenarTabla();
+        
+    }
+    
+    public void llenarTablaConBusqueda(String texto){
+        
+    }
+    
+    public void llenarTabla(){
+        RoleDAO r = new RoleDAO();
+        DefaultTableModel dfm = new DefaultTableModel();
+        tabla = this.jTable1;
+        tabla.setModel(dfm);
+        
+        dfm.setColumnIdentifiers(new Object[]{"Codigo","Nombre del Rol"});
+        ResultSet rs = r.getRoles();
+        
+        try{
+            while(rs.next()){
+                dfm.addRow(new Object[]{rs.getInt("roleid"), rs.getString("rolename")});
+            }
+        }catch(Exception e){
+            System.out.println("Error al cargar los datos");
+        }
     }
 
     /**
@@ -36,6 +67,9 @@ public class vRolesAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
@@ -45,42 +79,82 @@ public class vRolesAdmin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setBorder(null);
-        jTable1.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eliminarnormal.png"))); // NOI18N
+        jButton4.setBorder(null);
+        jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton4.setIconTextGap(-3);
+        jButton4.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eliminarclick.png"))); // NOI18N
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/editarnormal.png"))); // NOI18N
+        jButton3.setBorder(null);
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton3.setIconTextGap(-3);
+        jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/editarclick.png"))); // NOI18N
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
+
+        jTextField2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(254, 254, 254));
+        jTextField2.setBorder(null);
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 113, 270, -1));
+
+        jTable1.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 560, 330));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 540, 290));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/registrarnormal.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nuevonormal.png"))); // NOI18N
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.setIconTextGap(-3);
-        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/registrarclick.png"))); // NOI18N
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nuevoclick.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(254, 254, 254));
         jTextField1.setBorder(null);
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 470, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 15, 470, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/fondoroladmin.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        RoleDAO r = new RoleDAO();
+        String rolename = jTextField1.getText();
+        if(rolename.equals("")){
+            javax.swing.JOptionPane.showMessageDialog(null, "Inserte un nombre de rol");
+        }else{
+            r.setRolename(rolename);
+            if(r.newRole()){
+                this.llenarTabla();
+                System.out.println("Se inserto correctamente");
+            }else{
+                System.out.println("Problemas en la inserción");
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,9 +193,12 @@ public class vRolesAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
