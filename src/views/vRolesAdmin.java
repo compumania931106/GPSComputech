@@ -84,7 +84,7 @@ public class vRolesAdmin extends javax.swing.JFrame {
         DefaultTableModel dfm = new DefaultTableModel();
         tabla = this.jTable1;
         tabla.setModel(dfm);
-
+        
         dfm.setColumnIdentifiers(new Object[]{"Codigo", "Nombre del Rol"});
         ResultSet rs = r.getRoles();
 
@@ -216,6 +216,7 @@ public class vRolesAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
         RoleDAO r = new RoleDAO();
         if (jTextField1.getText().equals("")) {
             javax.swing.JOptionPane.showMessageDialog(null, "Seleecione un registro para editar");
