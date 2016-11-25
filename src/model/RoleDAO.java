@@ -58,7 +58,7 @@ public class RoleDAO extends Role {
     }
 
     public ResultSet getRoleByName() {
-        String sql = "SELECT * FROM public.role WHERE rolename LIKE '" + getRolename() + "%'";
+        String sql = "SELECT * FROM public.role WHERE rolename LIKE '" + getRolename() + "%' ORDER BY roleid ASC;";
         return con.Read(sql);
     }
 
