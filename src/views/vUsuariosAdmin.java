@@ -13,9 +13,12 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JComponent;
 import javax.swing.JList;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import model.CompanyDAO;
 import model.RoleDAO;
+import model.UsersDAO;
 
 /**
  *
@@ -23,6 +26,7 @@ import model.RoleDAO;
  */
 public class vUsuariosAdmin extends javax.swing.JFrame {
 
+    JTable tabla;
     /**
      * Creates new form vUsuariosAdmin
      */
@@ -64,21 +68,49 @@ public class vUsuariosAdmin extends javax.swing.JFrame {
 
         jPasswordField1.setOpaque(false);
         jPasswordField1.setBackground(new Color(0, 0, 0, 0));
+        
+        jScrollPane1.setOpaque(false);
+        jScrollPane1.getViewport().setOpaque(false);
+        jTable1.setShowGrid(false);
+        
+        jTable1.setDefaultEditor(Object.class, null);
 
         ArrayList<String> listroles = new ArrayList<String>();
         listroles = llenarListaRoles();
-        for(int i = 0; i < listroles.size(); i++){
+        for (int i = 0; i < listroles.size(); i++) {
             jComboBox2.addItem(listroles.get(i));
         }
-        
+
         ArrayList<String> listcompanys = new ArrayList<String>();
         listcompanys = llenarListaCompanys();
-        for(int i = 0; i < listcompanys.size(); i++){
+        for (int i = 0; i < listcompanys.size(); i++) {
             jComboBox3.addItem(listcompanys.get(i));
         }
+        
+        this.llenarTabla();
     }
+    
+    public void llenarTabla() {
+        UsersDAO u = new UsersDAO();
+        DefaultTableModel dfm = new DefaultTableModel();
+        tabla = this.jTable1;
+        tabla.setModel(dfm);
+        
+        dfm.setColumnIdentifiers(new Object[]{"Codigo", "Usuario", "Telefono", "Colonia", "Calle", "Numero", "CP", "Ciudad", "Estado", "Email" , "Celular"});
+        ResultSet rs = u.getUsers();
 
-    public ArrayList<String> llenarListaCompanys(){
+        try {
+            while (rs.next()) {
+                dfm.addRow(new Object[]{rs.getInt("userid"), rs.getString("username"),rs.getString("phone"), rs.getString("neigborhood"),rs.getString("street"), rs.getString("streetnumber"),rs.getString("zipcode"), rs.getString("city"),rs.getString("state"), rs.getString("email"), rs.getString("cellphone")});
+            }
+        } catch (Exception e) {
+            System.out.println("Error al cargar los datos: " + e.getMessage());
+        }
+    }
+    
+    
+
+    public ArrayList<String> llenarListaCompanys() {
         ArrayList<String> list = new ArrayList<String>();
         CompanyDAO con = new CompanyDAO();
         ResultSet rs = con.getCompanys();
@@ -92,7 +124,7 @@ public class vUsuariosAdmin extends javax.swing.JFrame {
 
         return list;
     }
-    
+
     public ArrayList<String> llenarListaRoles() {
         ArrayList<String> list = new ArrayList<String>();
         RoleDAO rol = new RoleDAO();
@@ -117,6 +149,11 @@ public class vUsuariosAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
         jComboBox3 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -136,6 +173,63 @@ public class vUsuariosAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 840, 290));
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eliminarnormal.png"))); // NOI18N
+        jButton4.setBorder(null);
+        jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton4.setIconTextGap(-3);
+        jButton4.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eliminarclick.png"))); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, -1, -1));
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/editarnormal.png"))); // NOI18N
+        jButton3.setBorder(null);
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton3.setIconTextGap(-3);
+        jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/editarclick.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, -1));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nuevonormal.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton2.setIconTextGap(-3);
+        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nuevoclick.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
 
         jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jPasswordField1.setBorder(null);
@@ -204,6 +298,97 @@ public class vUsuariosAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        RoleDAO r = new RoleDAO();
+        CompanyDAO co = new CompanyDAO();
+
+        int roleid = 0;
+        int companyid = 0;
+        String gender = (String) jComboBox1.getSelectedItem();
+
+        r.setRolename((String) jComboBox2.getSelectedItem());
+        ResultSet rs = r.getRoleByName();
+        try {
+            while (rs.next()) {
+                roleid = rs.getInt("roleid");
+            }
+        } catch (Exception e) {
+            System.out.println("Error al cargar los datos");
+        }
+
+        co.setCompanyname((String) jComboBox3.getSelectedItem());
+        ResultSet rr = co.getCompanyByName();
+        try {
+            while (rr.next()) {
+                companyid = rr.getInt("companyid");
+            }
+        } catch (Exception e) {
+            System.out.println("Error al cargar los datos");
+        }
+
+        String username = jTextField1.getText();
+        String password = String.valueOf(jPasswordField1.getPassword());
+        String phone = jTextField2.getText();
+        String neigborhood = jTextField3.getText();
+        String street = jTextField4.getText();
+        String streetnumber = jTextField5.getText();
+        String zipcode = jTextField6.getText();
+        String city = jTextField7.getText();
+        String state = jTextField8.getText();
+        String email = jTextField9.getText();
+        String cellphone = jTextField10.getText();
+
+        if (username.equals("") || password.equals("") || phone.equals("") || neigborhood.equals("") || street.equals("") || streetnumber.equals("") || zipcode.equals("") || city.equals("") || state.equals("") || email.equals("") || cellphone.equals("")) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Es necesario rellene todos los campos");
+        } else {
+            UsersDAO users = new UsersDAO();
+            users.setUsername(username);
+            users.setPassword(password);
+            users.setPhone(phone);
+            users.setNeigborhood(neigborhood);
+            users.setStreet(street);
+            users.setStreetnumber(streetnumber);
+            users.setZipcode(zipcode);
+            users.setCity(city);
+            users.setState(state);
+            users.setEmail(email);
+            users.setCellphone(cellphone);
+            users.setGender(gender.charAt(0));
+            users.setRoleid(roleid);
+            users.setCompanyid(companyid);
+            
+            if (users.newUsers()) {
+                this.llenarTabla();
+                jTextField1.setText("");
+                jPasswordField1.setText("");
+                jTextField2.setText("");
+                jTextField3.setText("");
+                jTextField4.setText("");
+                jTextField5.setText("");
+                jTextField6.setText("");
+                jTextField7.setText("");
+                jTextField8.setText("");
+                jTextField9.setText("");
+                jTextField10.setText("");
+                
+                
+                System.out.println("Se inserto correctamente");
+            } else {
+                System.out.println("Problemas en la inserción");
+            }
+        }
+
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -240,11 +425,16 @@ public class vUsuariosAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
