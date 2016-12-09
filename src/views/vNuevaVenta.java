@@ -57,7 +57,7 @@ public class vNuevaVenta extends javax.swing.JFrame {
 
     }
 
-    public void agregarProducto() {
+    public void agregarProducto() {/*
         obtenerProducto = jTextField1.getText();
 
         ProductDAO c = new ProductDAO();
@@ -132,7 +132,7 @@ public class vNuevaVenta extends javax.swing.JFrame {
                 dfm = (DefaultTableModel) jTable1.getModel();
                 dfm.removeRow(filas);
             }
-        }
+        }*/
 
     }
 
