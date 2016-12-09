@@ -62,4 +62,8 @@ public class SaleDAO extends Sale {
         return con.Read(sql);
     }
 
+    public ResultSet getMaxid() {
+        String sql = "select max(saleid) as saleid from public.Sale";
+        return con.Read(sql);
+    }
 }

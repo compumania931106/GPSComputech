@@ -5,6 +5,12 @@
  */
 package views;
 
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
+import javax.swing.ImageIcon;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import model.CompanyDAO;
 
 /**
@@ -13,11 +19,31 @@ import model.CompanyDAO;
  */
 public class vSucursalesAdmin extends javax.swing.JFrame {
 
+    JTable tabla;
+
+    int idorigen = 0;
+    String nombreorigen = "";
+    String coloniaorigen = "";
+    String CPorigen = "";
+    String ciudadorigen = "";
+    String estadoorigen = "";
+    String regionorigen = "";
+    String calleorigen = "";
+    String numeroorigen = "";
+    String telefonoorigen = "";
+    String rfcorigen = "";
+
     /**
      * Creates new form vSucursalesAdmin
      */
     public vSucursalesAdmin() {
+
         initComponents();
+        jTextField1.setBackground(new Color(0, 0, 0, 0));
+        setIconImage(new ImageIcon(getClass().getResource("logo.png")).getImage());
+        jScrollPane1.setOpaque(false);
+        jScrollPane1.getViewport().setOpaque(false);
+        this.llenarTabla();
     }
 
     /**
@@ -35,79 +61,122 @@ public class vSucursalesAdmin extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton2.setText("Reporte");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/reportenormal.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/reporteclick.png"))); // NOI18N
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 110, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setText("Nuevo");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nuevonormal.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nuevoclick.png"))); // NOI18N
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 110, -1, -1));
 
+        jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 120, 210, -1));
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField1.setBorder(null);
+        jTextField1.setOpaque(false);
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 270, 30));
 
         jButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton3.setText("Salir");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/salirnormal.png"))); // NOI18N
+        jButton3.setBorder(null);
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/salirclick.png"))); // NOI18N
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 480, -1, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 480, -1, -1));
 
         jTable1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Id", "Nombre", "Colonia", "Codigo postal", "Ciudad", "Estado", "Region", "Calle", "Numero", "Telefono", "RFC"
+
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTable1KeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 1090, 230));
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel3.setText("Buscar:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 120, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel2.setText("Sucursales");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 1160, 230));
 
         jButton4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton4.setText("Eliminar");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eliminarnormal.png"))); // NOI18N
+        jButton4.setBorder(null);
+        jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eliminarclick.png"))); // NOI18N
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 110, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/wallpaper.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1110, 540));
+        jComboBox1.setBackground(new java.awt.Color(204, 0, 0));
+        jComboBox1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Nombre", "Id" }));
+        jComboBox1.setToolTipText("");
+        jComboBox1.setBorder(null);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 150, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/fondosucursales.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -116,10 +185,24 @@ public class vSucursalesAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         vNuevaSucursal p = new vNuevaSucursal();
         p.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        // TODO add your handling code here:
+        CompanyDAO c = new CompanyDAO();
+        if (tabla.getSelectedRow() != -1) {
+
+            c.setCompanyid((Integer) tabla.getValueAt(tabla.getSelectedRow(), 0));
+            if (c.deleteCompany()) {
+                this.llenarTabla();
+                System.out.println("Se elimino correctamente");
+            } else {
+                System.out.println("Problemas en la eliminación");
+                javax.swing.JOptionPane.showMessageDialog(null, "Para eliminar esa sucursal tiene que eliminar a cada usuario asociado a esta");
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(null, "Seleecione un registro para eliminar");
+        }
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -128,8 +211,551 @@ public class vSucursalesAdmin extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-        
+        this.dispose();
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        if (jComboBox1.getSelectedIndex() != 0) {
+            jTextField1.setEditable(true);
+        } else {
+            jTextField1.setEditable(false);
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        switch (jComboBox1.getSelectedIndex()) {
+            case 1:
+                this.llenarTablaConBusqueda(jTextField1.getText());
+                break;
+
+            case 2:
+                char caracter = evt.getKeyChar();
+
+                if ((caracter < '0' || caracter > '9')) {
+                    System.out.println("debe entrar");
+                    evt.consume();
+                }
+                if (caracter == KeyEvent.VK_SPACE) {
+                    evt.consume();
+                }
+                this.llenarTablaConBusqueda(jTextField1.getText());
+                break;
+
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTable1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyTyped
+        // TODO add your handling code here:
+        CompanyDAO c = new CompanyDAO();
+        char caracter = evt.getKeyChar();
+        if (caracter == KeyEvent.VK_ENTER) {
+            if (jTable1.getSelectedRow() - 1 == -1) {
+                javax.swing.JOptionPane.showMessageDialog(null, "preciono enter " + (jTable1.getRowCount() - 1));
+                int id = (Integer) jTable1.getValueAt(jTable1.getRowCount() - 1, 0);
+                String nombre = (String) jTable1.getValueAt(jTable1.getRowCount() - 1, 1);
+                String colonia = (String) jTable1.getValueAt(jTable1.getRowCount() - 1, 2);
+                String CP = (String) jTable1.getValueAt(jTable1.getRowCount() - 1, 3);
+                String ciudad = (String) jTable1.getValueAt(jTable1.getRowCount() - 1, 4);
+                String estado = (String) jTable1.getValueAt(jTable1.getRowCount() - 1, 5);
+                String region = (String) jTable1.getValueAt(jTable1.getRowCount() - 1, 6);
+                String calle = (String) jTable1.getValueAt(jTable1.getRowCount() - 1, 7);
+                String numero = (String) jTable1.getValueAt(jTable1.getRowCount() - 1, 8);
+                String telefono = (String) jTable1.getValueAt(jTable1.getRowCount() - 1, 9);
+                String rfc = (String) jTable1.getValueAt(jTable1.getRowCount() - 1, 10);
+
+                if (!nombreorigen.equals(nombre)) {
+
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!coloniaorigen.equals(colonia)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!CPorigen.equals(CP)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!ciudadorigen.equals(ciudad)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!estadoorigen.equals(estado)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!regionorigen.equals(region)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!calleorigen.equals(calle)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!numeroorigen.equals(numero)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!telefonoorigen.equals(telefono)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!rfcorigen.equals(rfc)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                }
+
+            } else {
+                int id = (Integer) jTable1.getValueAt(jTable1.getSelectedRow() - 1, 0);
+                String nombre = (String) jTable1.getValueAt(jTable1.getSelectedRow() - 1, 1);
+                String colonia = (String) jTable1.getValueAt(jTable1.getSelectedRow() - 1, 2);
+                String CP = (String) jTable1.getValueAt(jTable1.getSelectedRow() - 1, 3);
+                String ciudad = (String) jTable1.getValueAt(jTable1.getSelectedRow() - 1, 4);
+                String estado = (String) jTable1.getValueAt(jTable1.getSelectedRow() - 1, 5);
+                String region = (String) jTable1.getValueAt(jTable1.getSelectedRow() - 1, 6);
+                String calle = (String) jTable1.getValueAt(jTable1.getSelectedRow() - 1, 7);
+                String numero = (String) jTable1.getValueAt(jTable1.getSelectedRow() - 1, 8);
+                String telefono = (String) jTable1.getValueAt(jTable1.getSelectedRow() - 1, 9);
+                String rfc = (String) jTable1.getValueAt(jTable1.getSelectedRow() - 1, 10);
+
+                if (!nombreorigen.equals(nombre)) {
+
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!coloniaorigen.equals(colonia)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!CPorigen.equals(CP)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!ciudadorigen.equals(ciudad)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!estadoorigen.equals(estado)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!regionorigen.equals(region)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!calleorigen.equals(calle)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!numeroorigen.equals(numero)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!telefonoorigen.equals(telefono)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                } else if (!rfcorigen.equals(rfc)) {
+                    c.setCompanyid(id);
+                    c.setCompanyname(nombre);
+                    c.setNeighborhood(colonia);
+                    c.setZipcode(CP);
+                    c.setCity(ciudad);
+                    c.setState(estado);
+                    c.setRegion(region);
+                    c.setStreet(calle);
+                    c.setStreetnumber(numero);
+                    c.setPhone(telefono);
+                    c.setRfc(rfc);
+
+                    if (c.updateCompany()) {
+                        this.llenarTabla();
+                        System.out.println("Se actualizo correctamente");
+                    } else {
+                        System.out.println("Problemas en la actualizacion");
+                    }
+
+                }
+            }
+        }
+    }//GEN-LAST:event_jTable1KeyTyped
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        idorigen = (Integer) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+        nombreorigen = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1);
+        coloniaorigen = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2);
+        CPorigen = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 3);
+        ciudadorigen = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 4);
+        estadoorigen = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5);
+        regionorigen = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 6);
+        calleorigen = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 7);
+        numeroorigen = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 8);
+        telefonoorigen = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 9);
+        rfcorigen = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 10);
+
+
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    public void llenarTabla() {
+        CompanyDAO c = new CompanyDAO();
+        DefaultTableModel dfm = new DefaultTableModel();
+        tabla = this.jTable1;
+        tabla.setModel(dfm);
+
+        dfm.setColumnIdentifiers(new Object[]{"Id", "Nombre", "Colonia", "Codigo postal", "Ciudad", "Estado", "Region", "Calle", "Numero", "Telefono", "RFC"});
+        ResultSet rs = c.getCompanys();
+
+        try {
+            while (rs.next()) {
+                dfm.addRow(new Object[]{rs.getInt("companyid"), rs.getString("companyname"), rs.getString("neighborhood"), rs.getString("zipcode"), rs.getString("city"), rs.getString("state"), rs.getString("region"), rs.getString("street"), rs.getString("streetnumber"), rs.getString("phone"), rs.getString("rfc")});
+            }
+        } catch (Exception e) {
+            System.out.println("Error al cargar los datos");
+        }
+    }
+
+    public void llenarTablaConBusqueda(String buscar) {
+        CompanyDAO c = new CompanyDAO();
+        DefaultTableModel dfm = new DefaultTableModel();
+        tabla = this.jTable1;
+        tabla.setModel(dfm);
+
+        dfm.setColumnIdentifiers(new Object[]{"Id", "Nombre", "Colonia", "Codigo postal", "Ciudad", "Estado", "Region", "Calle", "Numero", "Telefono", "RFC"});
+
+        if (jComboBox1.getSelectedIndex() == 1) {
+            c.setCompanyname(buscar);
+            ResultSet rs = c.getCompanyByName();
+
+            try {
+                while (rs.next()) {
+                    dfm.addRow(new Object[]{rs.getInt("companyid"), rs.getString("companyname"), rs.getString("neighborhood"), rs.getString("zipcode"), rs.getString("city"), rs.getString("state"), rs.getString("region"), rs.getString("street"), rs.getString("streetnumber"), rs.getString("phone"), rs.getString("rfc")});
+                }
+            } catch (Exception e) {
+                System.out.println("Error al cargar los datos");
+            }
+        } else if (buscar.equals("")) {
+            llenarTabla();
+        } else {
+            c.setCompanyid(Integer.parseInt(buscar));
+            ResultSet rs = c.getCompanyByID();
+
+            try {
+                while (rs.next()) {
+                    dfm.addRow(new Object[]{rs.getInt("companyid"), rs.getString("companyname"), rs.getString("neighborhood"), rs.getString("zipcode"), rs.getString("city"), rs.getString("state"), rs.getString("region"), rs.getString("street"), rs.getString("streetnumber"), rs.getString("phone"), rs.getString("rfc")});
+                }
+            } catch (Exception e) {
+                System.out.println("Error al cargar los datos");
+            }
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -171,9 +797,8 @@ public class vSucursalesAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;

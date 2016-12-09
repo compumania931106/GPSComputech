@@ -29,7 +29,7 @@ public class CompanyDAO extends Company{
     }
     
     public boolean updateCompany(){
-        String sql = "UPDATE public.company SET companyname='"+ getCompanyname() +"', neighborhood='"+ getNeighborhood() +"', zipcode='"+ getZipcode() +"', city='"+ getCity() +"', state='"+ getState() +"', region='"+ getRegion() +"', street='"+ getStreet() +"', streetnumber='"+ getStreetnumber() +"', phone='"+ getPhone() +"', rfc='"+ getRfc() +"' WHERE companyid"+ getCompanyid() +";";
+        String sql = "UPDATE public.company SET companyname='"+ getCompanyname() +"', neighborhood='"+ getNeighborhood() +"', zipcode='"+ getZipcode() +"', city='"+ getCity() +"', state='"+ getState() +"', region='"+ getRegion() +"', street='"+ getStreet() +"', streetnumber='"+ getStreetnumber() +"', phone='"+ getPhone() +"', rfc='"+ getRfc() +"' WHERE companyid="+ getCompanyid() +";";
         if(con.Update(sql) == 1){
             return true;
         }else{

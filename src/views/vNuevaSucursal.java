@@ -5,6 +5,8 @@
  */
 package views;
 
+import java.awt.Color;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.CompanyDAO;
 
@@ -13,12 +15,25 @@ import model.CompanyDAO;
  * @author AlainEmmanuel
  */
 public class vNuevaSucursal extends javax.swing.JFrame {
+    vSucursalesAdmin p = new vSucursalesAdmin();
 
     /**
      * Creates new form vNuevaSucursal
      */
     public vNuevaSucursal() {
         initComponents();
+        jTextField1.setBackground(new Color(0, 0, 0, 0));
+        jTextField2.setBackground(new Color(0, 0, 0, 0));
+        jTextField3.setBackground(new Color(0, 0, 0, 0));
+        jTextField4.setBackground(new Color(0, 0, 0, 0));
+        jTextField5.setBackground(new Color(0, 0, 0, 0));
+        jTextField6.setBackground(new Color(0, 0, 0, 0));
+        jTextField7.setBackground(new Color(0, 0, 0, 0));
+        jTextField8.setBackground(new Color(0, 0, 0, 0));
+        jTextField9.setBackground(new Color(0, 0, 0, 0));
+        jTextField10.setBackground(new Color(0, 0, 0, 0));
+        
+        setIconImage(new ImageIcon(getClass().getResource("logo.png")).getImage());
     }
 
     /**
@@ -32,24 +47,13 @@ public class vNuevaSucursal extends javax.swing.JFrame {
 
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -57,80 +61,96 @@ public class vNuevaSucursal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 330, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 330, -1));
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel3.setText("Codigo postal:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
+        jTextField1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField1.setBorder(null);
+        jTextField1.setOpaque(false);
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 280, 20));
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel4.setText("Nombre de la sucursal:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        jTextField2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField2.setBorder(null);
+        jTextField2.setOpaque(false);
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 280, 20));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel2.setText("Nueva sucursal");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
+        jTextField3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField3.setBorder(null);
+        jTextField3.setOpaque(false);
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 280, 20));
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel5.setText("Ciudad:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 330, -1));
+        jTextField4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField4.setBorder(null);
+        jTextField4.setOpaque(false);
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 270, 20));
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel6.setText("Estado:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 330, -1));
+        jTextField5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField5.setBorder(null);
+        jTextField5.setOpaque(false);
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 270, 20));
 
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel7.setText("Region:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 330, -1));
+        jTextField6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jTextField6.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField6.setBorder(null);
+        jTextField6.setOpaque(false);
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 280, 20));
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel8.setText("Calle:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, -1));
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 330, -1));
+        jTextField7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jTextField7.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField7.setBorder(null);
+        jTextField7.setOpaque(false);
+        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 280, 20));
 
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel9.setText("Numero:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 330, -1));
+        jTextField8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jTextField8.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField8.setBorder(null);
+        jTextField8.setOpaque(false);
+        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 530, 280, 20));
 
-        jLabel10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel10.setText("RFC:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, -1));
-        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 480, 330, -1));
+        jTextField9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jTextField9.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField9.setBorder(null);
+        jTextField9.setOpaque(false);
+        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 280, 20));
 
-        jLabel11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel11.setText("Colonia:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
-        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 330, -1));
-
-        jLabel12.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel12.setText("Telefono:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
-        getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 330, -1));
+        jTextField10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jTextField10.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField10.setBorder(null);
+        jTextField10.setOpaque(false);
+        getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 480, 280, 20));
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setText("Guaradr");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/guardarnormal.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/guardarclick.png"))); // NOI18N
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 560, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 580, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton2.setText("Cancelar");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cancelarnormal.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cancelarclick.png"))); // NOI18N
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 560, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 580, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/wallpaper.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/fondonuevasuc.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 650));
 
         pack();
@@ -167,6 +187,11 @@ public class vNuevaSucursal extends javax.swing.JFrame {
                 jTextField10.setText("");
 
                 JOptionPane.showMessageDialog(null, "Se inserto una nueva sucursal");
+                                
+                p.setVisible(true);
+                p.llenarTabla();
+                this.dispose();
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Error al insertar");
             }
@@ -175,6 +200,7 @@ public class vNuevaSucursal extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
+        p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
@@ -217,17 +243,6 @@ public class vNuevaSucursal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
