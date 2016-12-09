@@ -79,6 +79,7 @@ public class vRolesAdmin extends javax.swing.JFrame {
         }
     }
 
+    
     public void llenarTabla() {
         RoleDAO r = new RoleDAO();
         DefaultTableModel dfm = new DefaultTableModel();
@@ -149,6 +150,11 @@ public class vRolesAdmin extends javax.swing.JFrame {
         jTextField2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(254, 254, 254));
         jTextField2.setBorder(null);
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField2KeyTyped(evt);
@@ -246,6 +252,10 @@ public class vRolesAdmin extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments

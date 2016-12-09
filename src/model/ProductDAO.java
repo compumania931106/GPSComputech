@@ -21,8 +21,7 @@ public class ProductDAO extends Product {
     
     
     public boolean newProduct(){
-        String sql = "INSERT INTO public.product(code,productname,brand,purchprice,stock,salepricemin,reorderpoint,categoryid,salepricemay)VALUES ('"+ getCode() +"','"+ getProductname() +"','"+ getBrand() +"',"
-                + "'"+ getPurchprice() +"','"+ getStock() +"','"+ getSalepricemin() +"','"+ getReorderpoint() +"','"+ getCategoryid() +"','"+ getSalepricemay() +"');";
+        String sql = "INSERT INTO public.product(code,productname,brand,purchprice,stock,salepricemin,reorderpoint,categoryid,salepricemay)VALUES ('"+ getCode() +"','"+ getProductname() +"','"+ getBrand() +"','"+ getPurchprice() +"','"+ getStock() +"','"+ getSalepricemin() +"','"+ getReorderpoint() +"','"+ getCategoryid() +"','"+ getSalepricemay() +"');";
         if(con.Create(sql) == null){
             return true;
         }else{
